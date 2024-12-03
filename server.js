@@ -5,6 +5,8 @@ const users = require("./data/users");
 const posts = require("./data/posts");
 const comments = require("./data/comments");
 
+app.set("view engine", "ejs");
+
 app.use(express.json());
 function authenticate(req, res, next) {
   if (!req.headers["authorization"]) {
@@ -28,7 +30,7 @@ app.get("/users", (req, res) => {
       user.name.toLowerCase().includes(req.query.name.toLowerCase())
     );
   }
-  res.json(filteredUsers);
+  res.render("index", { users: filteredUsers });
 });
 
 app.get("/posts", (req, res) => {
