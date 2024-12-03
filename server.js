@@ -65,6 +65,17 @@ app.post("/comments", (req, res) => {
   res.json(newComment);
 });
 
+app.put("/users/:id", (req, res) => {
+  const userId = parseInt(req.params.id);
+  const user = users.find((user) => user.id === userId);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  user.name = req.body.name || user.name;
+  user.email = req.body.email || user.email;
+  res.json(user);
+});
+
 app.use((req, res) => {
   console.log(
     "I am only in this middleware if no other routes have sent a response."
