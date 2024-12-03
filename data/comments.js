@@ -25,3 +25,5 @@ let comments = [
     content: "I hope you enjoy it too!",
   },
 ];
+
+modules.export = comments;

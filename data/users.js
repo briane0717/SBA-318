@@ -25,3 +25,5 @@ const users = [
     email: "charliedavis@example.com",
   },
 ];
+
+module.exports = users;

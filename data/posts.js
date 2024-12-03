@@ -25,3 +25,5 @@ const posts = [
     content: "I hope you enjoy it! ��",
   },
 ];
+
+module.exports = posts;

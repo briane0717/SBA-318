@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const users = require("./data/users");
+// const posts = require("./data/posts");
+// const comments = require("./data/comments");
 
+app.use(express.json());
 function authenticate(req, res, next) {
   if (!req.headers["authorization"]) {
     return res.status(401).json({ message: "Unauthorized access" });
@@ -15,6 +19,21 @@ app.get("/dashboard", authenticate, (req, res) => {
 
 app.get("/", (req, res) => {
   res.send("Front Page Headlines 📰");
+});
+
+app.get("/users", (req, res) => {
+  res.json(users);
+});
+app.post("/users", (req, res) => {
+  console.log(req.body);
+  const newUser = {
+    id: users.length + 1,
+    name: req.body.name,
+    email: req.body.email,
+  };
+  users.push(newUser);
+  res.json(newUser);
+  res.status(201);
 });
 
 app.use((req, res) => {
