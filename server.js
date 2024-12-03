@@ -76,6 +76,16 @@ app.put("/users/:id", (req, res) => {
   res.json(user);
 });
 
+app.delete("/users/:id", (req, res) => {
+  const userId = parseInt(req.params.id);
+  const userIndex = users.findIndex((user) => user.id === userId);
+  if (userIndex === -1) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  users.splice(userIndex, 1);
+  res.status(204).send();
+});
+
 app.use((req, res) => {
   console.log(
     "I am only in this middleware if no other routes have sent a response."
