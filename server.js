@@ -8,6 +8,7 @@ const comments = require("./data/comments");
 app.set("view engine", "ejs");
 
 app.use(express.json());
+app.use(express.static("public"));
 function authenticate(req, res, next) {
   if (!req.headers["authorization"]) {
     return res.status(401).json({ message: "Unauthorized access" });
