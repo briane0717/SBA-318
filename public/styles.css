@@ -12,7 +12,7 @@ h1 {
   text-align: center;
   color: #333;
   padding: 20px;
-  background-color: #4caf50;
+  background-color: #000000;
   color: white;
 }
 
@@ -32,7 +32,7 @@ form input {
 
 form button {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: hsla(0, 82%, 47%, 0.817);
   color: white;
   border: none;
   cursor: pointer;
@@ -40,7 +40,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #45a049;
+  background-color: #000000;
 }
 
 ul {
