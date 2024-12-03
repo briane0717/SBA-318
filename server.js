@@ -22,15 +22,45 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  res.json(users);
+  let filteredUsers = users;
+  if (req.query.name) {
+    filteredUsers = filteredUsers.filter((user) =>
+      user.name.toLowerCase().includes(req.query.name.toLowerCase())
+    );
+  }
+  res.json(filteredUsers);
 });
 
 app.get("/posts", (req, res) => {
-  res.json(posts);
+  const { title, content } = req.query;
+
+  let filteredPosts = posts;
+
+  if (title) {
+    filteredPosts = filteredPosts.filter((post) =>
+      post.title.toLowerCase().includes(title.toLowerCase())
+    );
+  }
+
+  if (content) {
+    filteredPosts = filteredPosts.filter((post) =>
+      post.content.toLowerCase().includes(content.toLowerCase())
+    );
+  }
+
+  res.json(filteredPosts);
 });
 
 app.get("/comments", (req, res) => {
-  res.json(comments);
+  let filteredComments = comments;
+
+  if (req.query.postId) {
+    filteredComments = filteredComments.filter(
+      (comment) => comment.postId == req.query.postId
+    );
+  }
+
+  res.json(filteredComments);
 });
 app.post("/users", (req, res) => {
   const newUser = {
