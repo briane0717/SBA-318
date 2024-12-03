@@ -26,4 +26,4 @@ let comments = [
   },
 ];
 
-modules.export = comments;
+module.exports = comments;
